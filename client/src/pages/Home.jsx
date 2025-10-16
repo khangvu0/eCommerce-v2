@@ -1,58 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
 import '../styles/Home.css';
 
-//temp
-import shirt1 from '../assets/linen-shirt.png';
-import shirt2 from '../assets/polo.avif';
-import pants1 from '../assets/baggy-jeans.png';
-import pants2 from '../assets/ultra-baggy-jeans.png';
+// Import images from assets
+import baggyJeans from '../assets/baggy-jeans.png';
+import linenShirt from '../assets/linen-shirt.png';
+import loafers from '../assets/loafers.png';
+import polo from '../assets/polo.avif';
+import tokuten from '../assets/tokuten.png';
+import ultraBaggyJeans from '../assets/ultra-baggy-jeans.png';
+import pendant from '../assets/pendant.png';
 
-export default function Main() {
-    // Temporary static data (will later come from your Node/MySQL backend)
+export default function Home() {
     const [bestSellers, setBestSellers] = useState([]);
 
+    // Map backend image filenames to local imports
+    const imageMap = {
+        'baggy-jeans.png': baggyJeans,
+        'linen-shirt.png': linenShirt,
+        'polo.avif': polo,
+        'ultra-baggy-jeans.png': ultraBaggyJeans,
+        'tokuten.png': tokuten,
+        'loafers.png': loafers,
+        'pendant.png': pendant,
+    };
+
     useEffect(() => {
-        const sampleProducts = [
-            {
-                id: 1,
-                name: 'Cropped Linen Button-Up Shirt',
-                price: 80.0,
-                description:
-                    'Comfortable long-sleeve button-up shirt in our 100% linen fabric and new cropped length. Features a classic collar, left chest pocket and straight hem.',
-                image: shirt1,
-                category: 'tops',
-            },
-            {
-                id: 3,
-                name: 'Summer Linen-Blend Polo',
-                price: 60.0,
-                description:
-                    "Comfortable short-sleeve polo in our new lightweight and breathable summer linen-blend fabric, that's perfect for hot sunny days. Features a classic polo collar, three-button placket and straight hem.",
-                image: shirt2,
-                category: 'tops',
-            },
-            {
-                id: 5,
-                name: 'Baggy Jean',
-                price: 90.0,
-                description:
-                    'Our new baggy jeans, that are relaxed and baggy-fitting through the leg, with a slight puddle at the shoe, in our 100% cotton no-stretch fabric and broken-in denim feel. Features a medium wash and clean hem.',
-                image: pants1,
-                category: 'bottoms',
-            },
-            {
-                id: 6,
-                name: 'Ultra Baggy Jean',
-                price: 90.0,
-                description:
-                    'Our new ultra baggy fit jeans that sit slightly lower on the hip, and are our baggiest fit through the leg, in our 100% cotton no-stretch fabric and broken-in denim feel. Features a grey wash and clean hem.',
-                image: pants2,
-                category: 'bottoms',
-            },
-        ];
-        setBestSellers(sampleProducts);
+        const fetchBestSellers = async () => {
+            try {
+                const res = await fetch(
+                    'http://localhost:5000/api/best-sellers'
+                );
+                const data = await res.json();
+
+                const bestSellersWithImages = data.map((product) => ({
+                    ...product,
+                    image: imageMap[product.image] || null,
+                }));
+
+                setBestSellers(bestSellersWithImages);
+            } catch (err) {
+                console.error('Error fetching best sellers:', err);
+            }
+        };
+
+        fetchBestSellers();
     }, []);
 
     return (
@@ -60,7 +52,7 @@ export default function Main() {
             {/* Hero Section */}
             <section className="hero">
                 <img
-                    src="../../public/crosswalk.jpg"
+                    src="/crosswalk.jpg"
                     alt="Hero image featuring a man on a crosswalk"
                     className="hero-image"
                 />
@@ -70,25 +62,37 @@ export default function Main() {
                 </div>
             </section>
 
-            {/* Categories Section */}
-            <section className="categories">
-                <h2></h2>
-            </section>
-
             {/* Best Sellers Section */}
             <section className="best-sellers">
                 <h2>Best Sellers</h2>
-                <div className="best-sellers-grid">
-                    {bestSellers.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
+                <div className="best-sellers-slider">
+                    {bestSellers.length > 0 ? (
+                        bestSellers.map((product) => (
+                            <div key={product.id} className="slider-card">
+                                {product.image ? (
+                                    <img
+                                        src={product.image}
+                                        alt={product.name}
+                                        className="slider-image"
+                                    />
+                                ) : (
+                                    <div className="image-placeholder">
+                                        No image
+                                    </div>
+                                )}
+                                <p className="slider-name">{product.name}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p>Loading best sellers...</p>
+                    )}
                 </div>
             </section>
 
             {/* Promo Section */}
             <section className="promo">
                 <img
-                    src="../../public/jeans-banner.png"
+                    src="/jeans-banner.png"
                     alt="Denim jeans banner"
                     className="promo-image"
                 />

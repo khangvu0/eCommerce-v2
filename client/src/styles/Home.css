@@ -29,6 +29,11 @@
     font-size: 2rem;
 }
 /*-------------------- Best Sellers --------------------*/
+.best-sellers {
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
 .best-sellers h2 {
     text-align: center;
     font-size: 1.5rem;
@@ -37,33 +42,45 @@
     font-family: var(--font-title);
 }
 
-.best-sellers-div {
-    display: grid;
-    grid-template-columns: auto auto;
-    row-gap: 1rem;
+.best-sellers-slider {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide scrollbar (Firefox) */
     padding-bottom: 1rem;
 }
 
-.product-card {
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    text-align: center;
+.best-sellers-slider::-webkit-scrollbar {
+    display: none; /* Hide scrollbar (Chrome/Safari) */
 }
 
-.product-card img {
+.slider-card {
+    height: 50%;
+    flex: 0 0 calc(50% - 0.5rem);
+    scroll-snap-align: start;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.slider-card:hover {
+    transform: translateY(-4px);
+}
+
+.slider-image {
     width: 100%;
     height: auto;
-    min-height: 244px;
-    border-radius: 0.25rem;
+    border-radius: 12px 12px 0 0;
 }
 
-.product-card .name {
-    color: var(--main-color);
-    text-align: center;
-    font-size: 0.75rem;
-    font-family: var(--font-title);
-    margin: 0.5rem 0 0.25rem;
-    font-weight: 400;
+.slider-name {
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    min-height: 74px;
 }
 
 /*-------------------- Promo --------------------*/
@@ -107,13 +124,8 @@
 /*-------------------- Media Queries --------------------*/
 /* For tablet */
 @media screen and (min-width: 768px) {
-    .product-card img {
-        padding: 0 2rem;
-    }
-
-    .product-card .name {
-        font-size: 1rem;
-        font-weight: 400;
+    .slider-card {
+        flex: 0 0 calc(33.333% - 0.67rem);
     }
 }
 
@@ -137,14 +149,8 @@
         letter-spacing: 0.1rem;
     }
 
-    .best-sellers-div {
-        display: flex;
-        justify-content: space-evenly;
-    }
-
-    .product-card img {
-        padding: unset;
-        min-height: unset;
+    .slider-card {
+        flex: 0 0 calc(20% - 0.8rem);
     }
 
     .promo-image {
