@@ -1,0 +1,81 @@
+.categories-title {
+    margin: 0 1rem;
+    font-size: 1.25rem;
+}
+
+#bottoms .categories-title,
+#shoes .categories-title,
+#accessories .categories-title {
+    margin-top: 1.5rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    row-gap: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 1rem;
+}
+
+#accessories-grid {
+    border-bottom: none;
+}
+
+.product-card {
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+}
+
+.product-card .name,
+.product-card .price {
+    color: var(--main-color);
+}
+
+.product-card .name {
+    text-align: left;
+    font-size: 1rem;
+    font-family: var(--font-title);
+    margin: 0.5rem 0 0.25rem;
+    font-weight: 500;
+}
+
+.product-card .price {
+    font-family: var(--font-text);
+    text-align: left;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+}
+
+.product-card .desc {
+    text-align: left;
+    font-size: 0.8rem;
+}
+
+/*-------------------- Media Queries --------------------*/
+/* For tablet */
+@media screen and (min-width: 768px) {
+    .categories {
+        padding: 0 1rem;
+    }
+}
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+    }
+}
