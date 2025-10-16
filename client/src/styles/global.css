@@ -26,3 +26,10 @@ ul {
 a {
     text-decoration: none;
 }
+
+/*-------------------- Media Queries --------------------*/
+@media screen and (min-width: 1800px) {
+    html {
+        margin: 0 auto;
+    }
+}
