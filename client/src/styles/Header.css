@@ -6,6 +6,7 @@
     top: 0;
     z-index: 100;
     background-color: var(--body-color);
+    border-bottom: 2px solid #e0e0e0;
 }
 
 .nav {
