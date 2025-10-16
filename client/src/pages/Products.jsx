@@ -60,7 +60,7 @@ function ProductsPage() {
     }, []);
 
     const categories = ['Tops', 'Bottoms', 'Shoes', 'Accessories'];
-    const priceRanges = ['All', 'Under $50', '$50–$100', 'Over $100'];
+    const priceRanges = ['All', 'Under $75', '$75–$100', 'Over $100'];
 
     // Helper function that filters products within each section
     const filterProducts = (section) => {
@@ -71,9 +71,9 @@ function ProductsPage() {
 
             const matchPrice =
                 selectedPrice === 'All' ||
-                (selectedPrice === 'Under $50' && product.price < 50) ||
-                (selectedPrice === '$50–$100' &&
-                    product.price >= 50 &&
+                (selectedPrice === 'Under $75' && product.price < 75) ||
+                (selectedPrice === '$75–$100' &&
+                    product.price >= 75 &&
                     product.price <= 100) ||
                 (selectedPrice === 'Over $100' && product.price > 100);
 
@@ -91,8 +91,6 @@ function ProductsPage() {
 
     return (
         <main className="main">
-            <h1 className="page-title">Products</h1>
-
             {/* --- FILTER CONTROLS --- */}
             <div className="filters">
                 <div className="filter">
