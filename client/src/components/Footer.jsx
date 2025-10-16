@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import '../styles/Footer.css';
 
 // Import images from public
-import appleApp from '../../public/apple-app.svg';
-import googleApp from '../../public/google-app.svg';
-import instagramIcon from '../../public/instagram.svg';
-import facebookIcon from '../../public/facebook.svg';
-import tiktokIcon from '../../public/tiktok.svg';
-import pinterestIcon from '../../public/pinterest.svg';
-import youtubeIcon from '../../public/youtube.svg';
+import appleApp from '/apple-app.svg';
+import googleApp from '/google-app.svg';
+import instagramIcon from '/instagram.svg';
+import facebookIcon from '/facebook.svg';
+import tiktokIcon from '/tiktok.svg';
+import pinterestIcon from '/pinterest.svg';
+import youtubeIcon from '/youtube.svg';
 
 export default function Footer() {
     const [phone, setPhone] = useState('');
