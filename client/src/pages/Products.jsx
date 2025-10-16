@@ -18,6 +18,8 @@ import workwearPants from '../assets/workwear-pants.avif';
 
 function ProductsPage() {
     const [products, setProducts] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [selectedPrice, setSelectedPrice] = useState('All');
 
     // Image lookup table
     const imageMap = {
@@ -58,50 +60,105 @@ function ProductsPage() {
     }, []);
 
     const categories = ['Tops', 'Bottoms', 'Shoes', 'Accessories'];
+    const priceRanges = ['All', 'Under $50', '$50–$100', 'Over $100'];
+
+    // Helper function that filters products within each section
+    const filterProducts = (section) => {
+        return products.filter((product) => {
+            const matchCategory =
+                product.category &&
+                product.category.toLowerCase() === section.toLowerCase();
+
+            const matchPrice =
+                selectedPrice === 'All' ||
+                (selectedPrice === 'Under $50' && product.price < 50) ||
+                (selectedPrice === '$50–$100' &&
+                    product.price >= 50 &&
+                    product.price <= 100) ||
+                (selectedPrice === 'Over $100' && product.price > 100);
+
+            return matchCategory && matchPrice;
+        });
+    };
+
+    // Determine which sections to render
+    const visibleSections =
+        selectedCategory === 'All'
+            ? categories
+            : categories.filter(
+                  (cat) => cat.toLowerCase() === selectedCategory.toLowerCase()
+              );
 
     return (
         <main className="main">
-            {categories.map((category) => {
-                const filtered = products.filter(
-                    (product) =>
-                        product.category.toLowerCase() ===
-                        category.toLowerCase()
-                );
+            <h1 className="page-title">Products</h1>
 
-                return (
-                    <section
-                        className="categories"
-                        id={category.toLowerCase()}
-                        key={category}>
-                        <h2 className="categories-title">{category}</h2>
-                        <div className="product-grid">
-                            {filtered.length > 0 ? (
-                                filtered.map((product) => (
-                                    <div
-                                        className="product-card"
-                                        key={product.id}>
-                                        {product.image ? (
-                                            <img
-                                                src={product.image}
-                                                alt={product.name}
-                                                className="product-image"
-                                            />
-                                        ) : (
-                                            <div className="image-placeholder">
-                                                No image
-                                            </div>
-                                        )}
-                                        <h3>{product.name}</h3>
-                                        <p>${product.price}</p>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No {category.toLowerCase()} available.</p>
-                            )}
-                        </div>
-                    </section>
-                );
-            })}
+            {/* --- FILTER CONTROLS --- */}
+            <div className="filters">
+                <div className="filter">
+                    <label htmlFor="category">Filter by Type:</label>
+                    <select
+                        id="category"
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}>
+                        <option value="All">All</option>
+                        {categories.map((cat) => (
+                            <option key={cat} value={cat}>
+                                {cat}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className="filter">
+                    <label htmlFor="price">Filter by Price:</label>
+                    <select
+                        id="price"
+                        value={selectedPrice}
+                        onChange={(e) => setSelectedPrice(e.target.value)}>
+                        {priceRanges.map((range) => (
+                            <option key={range} value={range}>
+                                {range}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+
+            {/* --- CATEGORY SECTIONS --- */}
+            {visibleSections.map((section) => (
+                <section key={section} className="product-section">
+                    <h2 className="section-title">{section}</h2>
+                    <div className="product-grid">
+                        {filterProducts(section).length > 0 ? (
+                            filterProducts(section).map((product) => (
+                                <div className="product-card" key={product.id}>
+                                    {product.image ? (
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="product-image"
+                                        />
+                                    ) : (
+                                        <div className="image-placeholder">
+                                            No image
+                                        </div>
+                                    )}
+                                    <h3>{product.name}</h3>
+                                    <p>${product.price}</p>
+                                    <p className="product-description">
+                                        {product.description}
+                                    </p>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="no-products">
+                                No products match your filters in this category.
+                            </p>
+                        )}
+                    </div>
+                </section>
+            ))}
         </main>
     );
 }

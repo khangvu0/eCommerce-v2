@@ -59,6 +59,23 @@
     font-size: 0.8rem;
 }
 
+/* Filter */
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.filter label {
+    margin-right: 0.5rem;
+    font-weight: 600;
+}
+
+select {
+    padding: 0.4rem 0.6rem;
+}
+
 /*-------------------- Media Queries --------------------*/
 /* For tablet */
 @media screen and (min-width: 768px) {
