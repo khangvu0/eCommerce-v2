@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 // Fetch all products
 app.get('/api/products', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM products'); // destructure rows
+        const [rows] = await db.query('SELECT * FROM products');
         res.json(rows);
     } catch (err) {
         console.error('Error fetching products:', err);
