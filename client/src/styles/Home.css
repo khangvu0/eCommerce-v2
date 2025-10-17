@@ -55,7 +55,7 @@
     display: none; /* Hide scrollbar (Chrome/Safari) */
 }
 
-.slider-card {
+.slider-card-link {
     height: 50%;
     flex: 0 0 calc(50% - 0.5rem);
     scroll-snap-align: start;
@@ -125,7 +125,7 @@
 /*-------------------- Media Queries --------------------*/
 /* For tablet */
 @media screen and (min-width: 768px) {
-    .slider-card {
+    .slider-card-link {
         flex: 0 0 calc(33.333% - 0.67rem);
     }
 }
@@ -150,7 +150,7 @@
         letter-spacing: 0.1rem;
     }
 
-    .slider-card {
+    .slider-card-link {
         flex: 0 0 calc(20% - 0.8rem);
     }
 

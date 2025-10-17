@@ -50,6 +50,7 @@ export default function Home() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // Handles promo button click
     const handlePromoClick = () => {
         if (location.pathname === '/products') {
             const section = document.getElementById('bottoms');
@@ -84,20 +85,27 @@ export default function Home() {
                 <div className="best-sellers-slider">
                     {bestSellers.length > 0 ? (
                         bestSellers.map((product) => (
-                            <div key={product.id} className="slider-card">
-                                {product.image ? (
-                                    <img
-                                        src={product.image}
-                                        alt={product.name}
-                                        className="slider-image"
-                                    />
-                                ) : (
-                                    <div className="image-placeholder">
-                                        No image
-                                    </div>
-                                )}
-                                <p className="slider-name">{product.name}</p>
-                            </div>
+                            <Link
+                                to={`/products/${product.id}`}
+                                key={product.id}
+                                className="slider-card-link">
+                                <div className="slider-card">
+                                    {product.image ? (
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="slider-image"
+                                        />
+                                    ) : (
+                                        <div className="image-placeholder">
+                                            No image
+                                        </div>
+                                    )}
+                                    <p className="slider-name">
+                                        {product.name}
+                                    </p>
+                                </div>
+                            </Link>
                         ))
                     ) : (
                         <p>Loading best sellers...</p>
