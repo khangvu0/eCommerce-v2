@@ -38,6 +38,26 @@ app.get('/api/best-sellers', async (req, res) => {
     }
 });
 
+// Fetch single product by ID
+app.get('/api/products/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const { rows } = await db.query(
+            'SELECT * FROM products WHERE id = $1',
+            [id]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        res.json(rows[0]);
+    } catch (err) {
+        console.error('Error fetching product by ID:', err);
+        res.status(500).json({ error: 'Database query failed' });
+    }
+});
+
 // Catch-all route to serve index.html for client-side routing (Express 5 compatible)
 app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
