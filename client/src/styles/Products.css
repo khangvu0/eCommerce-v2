@@ -23,6 +23,11 @@
     text-align: center;
 }
 
+.product-card:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
 .product-card img {
     width: 100%;
     height: auto;
