@@ -66,6 +66,7 @@
 }
 
 .slider-card:hover {
+    cursor: pointer;
     transform: translateY(-4px);
 }
 
