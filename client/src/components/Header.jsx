@@ -1,7 +1,30 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Header.css';
 
 export default function Header() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    // Smoothly scrolls to a section after navigation
+    const handleNavClick = (sectionId) => {
+        if (location.pathname === '/products') {
+            // If already on the products page, just scroll
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            // If on another page, navigate first
+            navigate(`/products#${sectionId}`);
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 300); // wait for Products page to render
+        }
+    };
+
     return (
         <header className="header" id="header">
             <nav className="nav">
@@ -23,32 +46,36 @@ export default function Header() {
                             </Link>
                             <ul className="dropdown_menu">
                                 <li>
-                                    <a
-                                        href="/products#tops"
+                                    <button
+                                        onClick={() => handleNavClick('tops')}
                                         className="dropdown_item">
                                         Tops
-                                    </a>
+                                    </button>
                                 </li>
                                 <li>
-                                    <a
-                                        href="/products#bottoms"
+                                    <button
+                                        onClick={() =>
+                                            handleNavClick('bottoms')
+                                        }
                                         className="dropdown_item">
                                         Bottoms
-                                    </a>
+                                    </button>
                                 </li>
                                 <li>
-                                    <a
-                                        href="/products#shoes"
+                                    <button
+                                        onClick={() => handleNavClick('shoes')}
                                         className="dropdown_item">
                                         Shoes
-                                    </a>
+                                    </button>
                                 </li>
                                 <li>
-                                    <a
-                                        href="/products#accessories"
+                                    <button
+                                        onClick={() =>
+                                            handleNavClick('accessories')
+                                        }
                                         className="dropdown_item">
                                         Accessories
-                                    </a>
+                                    </button>
                                 </li>
                             </ul>
                         </li>
