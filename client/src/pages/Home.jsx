@@ -28,9 +28,7 @@ export default function Home() {
     useEffect(() => {
         const fetchBestSellers = async () => {
             try {
-                const res = await fetch(
-                    'http://localhost:5000/api/best-sellers'
-                );
+                const res = await fetch('/api/best-sellers');
                 const data = await res.json();
 
                 const bestSellersWithImages = data.map((product) => ({
