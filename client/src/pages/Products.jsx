@@ -124,12 +124,18 @@ function ProductsPage() {
             </div>
 
             {/* --- CATEGORY SECTIONS --- */}
-            {visibleSections.map((section) => (
-                <section key={section} className="product-section">
-                    <h2 className="section-title">{section}</h2>
-                    <div className="product-grid">
-                        {filterProducts(section).length > 0 ? (
-                            filterProducts(section).map((product) => (
+            {visibleSections.map((section) => {
+                const filteredProducts = filterProducts(section);
+                if (filteredProducts.length === 0) return null; // Hide empty sections
+
+                return (
+                    <section
+                        key={section}
+                        id={section.toLowerCase()} // Add section ID for anchor links
+                        className="product-section">
+                        <h2 className="section-title">{section}</h2>
+                        <div className="product-grid">
+                            {filteredProducts.map((product) => (
                                 <div className="product-card" key={product.id}>
                                     {product.image ? (
                                         <img
@@ -148,15 +154,11 @@ function ProductsPage() {
                                         {product.description}
                                     </p>
                                 </div>
-                            ))
-                        ) : (
-                            <p className="no-products">
-                                No products match your filters in this category.
-                            </p>
-                        )}
-                    </div>
-                </section>
-            ))}
+                            ))}
+                        </div>
+                    </section>
+                );
+            })}
         </main>
     );
 }
