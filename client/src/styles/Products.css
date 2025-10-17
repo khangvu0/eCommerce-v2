@@ -19,8 +19,9 @@
 
 .product-card {
     border-radius: 0.5rem;
-    padding: 0.5rem;
-    text-align: center;
+    text-align: left;
+    position: relative;
+    color: var(--text-color);
 }
 
 .product-card:hover {
@@ -36,14 +37,14 @@
 
 .product-card .name,
 .product-card .price {
-    color: var(--main-color);
+    color: var(--text-color);
+    padding-left: 1rem;
 }
 
 .product-card .name {
     text-align: left;
     font-size: 1rem;
     font-family: var(--font-title);
-    margin: 0.5rem 0 0.25rem;
     font-weight: 500;
 }
 
@@ -90,12 +91,16 @@ select {
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
-    /* #top {
-        margin-top: 1rem;
-    } */
-
     .product-grid {
         grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+    }
+
+    .product-card .name {
+        font-size: 1.1rem;
+    }
+
+    .product-card .price {
+        font-size: 1rem;
     }
 }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Products.css';
 
 // Import images from assets
@@ -136,7 +137,10 @@ function ProductsPage() {
                         <h2 className="section-title">{section}</h2>
                         <div className="product-grid">
                             {filteredProducts.map((product) => (
-                                <div className="product-card" key={product.id}>
+                                <Link
+                                    to={`/products/${product.id}`}
+                                    className="product-card"
+                                    key={product.id}>
                                     {product.image ? (
                                         <img
                                             src={product.image}
@@ -148,12 +152,9 @@ function ProductsPage() {
                                             No image
                                         </div>
                                     )}
-                                    <h3>{product.name}</h3>
-                                    <p>${product.price}</p>
-                                    <p className="product-description">
-                                        {product.description}
-                                    </p>
-                                </div>
+                                    <h3 className="name">{product.name}</h3>
+                                    <p className="price">${product.price}</p>
+                                </Link>
                             ))}
                         </div>
                     </section>
