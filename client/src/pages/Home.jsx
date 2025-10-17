@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Home.css';
 
 // Import images from assets
@@ -46,6 +46,22 @@ export default function Home() {
 
         fetchBestSellers();
     }, []);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handlePromoClick = () => {
+        if (location.pathname === '/products') {
+            const section = document.getElementById('bottoms');
+            if (section) section.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            navigate('/products');
+            setTimeout(() => {
+                const section = document.getElementById('bottoms');
+                if (section) section.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+    };
 
     return (
         <main className="main">
@@ -98,9 +114,11 @@ export default function Home() {
                 />
                 <div className="promo-text-container">
                     <h2 className="promo-title">KHNG Denim</h2>
-                    <Link to="/products#bottoms">
-                        <p className="promo-subtitle">Shop Now</p>
-                    </Link>
+                    <button
+                        className="promo-subtitle"
+                        onClick={handlePromoClick}>
+                        Shop Now
+                    </button>
                 </div>
             </section>
         </main>
