@@ -165,6 +165,7 @@ Through eCommerce-v2, I gained experience with:
 
 ## Screenshots
 
-![Homepage](/client/src/assets/screenshot1.png)
-![Products Page](/client/src/assets/screenshot2.png)
-![Contact Page](/client/src/assets/screenshot3.png)
+![Homepage](/client/src/assets/preview-home.png)
+![Products Page](/client/src/assets/preview-products.png)
+![Detail Page](/client/src/assets/preview-detail.png)
+![Contact Page](/client/src/assets/preview-contact.png)
