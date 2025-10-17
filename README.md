@@ -1,6 +1,7 @@
 # eCommerce-v2
 
-A full-stack, responsive, and dynamic eCommerce web application that offers users a seamless online shopping experience. This version builds on the original static eCommerce-v1 by introducing database integration, filtering functionality, and React-based component architecture for scalability and interactivity.
+A full-stack, responsive, and dynamic eCommerce web application that offers users a seamless online shopping experience.  
+This version builds upon the original static **[eCommerce](https://github.com/khangvu0/eCommerce)** by introducing a connected PostgreSQL database, React component architecture, filtering and navigation functionality, and a detailed product page for an enhanced shopping experience.
 
 ## Live Demo
 
@@ -14,7 +15,7 @@ Check out the live site here: **[eCommerce-v2 Live Demo](https://ecommerce-v2-q1
 
 -   **React.js (Vite)** – Component-based architecture for fast, modular UI development
 -   **JavaScript (ES6+)** – Dynamic rendering and event handling
--   **SCSS / CSS3** – Reusable styles, responsive layouts, and smooth animations
+-   **CSS3** – Reusable styles, responsive layouts, and smooth animations
 -   **React Router** – Client-side routing for seamless navigation
 -   **Fetch API** – Fetches data dynamically from backend endpoints
 
@@ -28,15 +29,46 @@ Check out the live site here: **[eCommerce-v2 Live Demo](https://ecommerce-v2-q1
 
 ## Features
 
--   **Dynamic Product Rendering** – Fetches live data from the PostgreSQL database
--   **Filtering System** – Users can filter by:
+### Home Page
+
+-   **Hero Section** – Eye-catching header image with title and tagline
+-   **Dynamic Product Rendering** – Fetches certain product data directly from the PostgreSQL database
+-   **Best Sellers Slider** – Horizontally scrollable product showcase with smooth snapping and hover effects
+-   **Clickable Product Cards** – Each best-seller card links directly to its product’s **Detail Page**
+-   **Promo Banner** – “Shop Now” button automatically navigates and scrolls to the **Bottoms section** of the Products page
+
+### Products Page
+
+-   **Dynamic Product Rendering** – Fetches all product data directly from the PostgreSQL database
+-   **Category & Price Filters** – Users can filter products by:
     -   Product Type (Tops, Bottoms, Shoes, Accessories)
     -   Price Ranges
--   **Auto-Hiding Sections** – Categories disappear dynamically when no products match the selected filter
--   **Responsive Design** – Fully optimized for mobile, tablet, and desktop
--   **Reusable Components** – Modular React structure for Product Cards, Filters, and Sections
--   **Best Sellers Slider** – Horizontally scrollable product showcase using scroll snapping
--   **Clean UI/UX** – Consistent design and interactive hover effects
+-   **Auto-Hiding Sections** – Sections disappear dynamically when no items match the selected filters
+-   **Clickable Product Cards** – Each product card links directly to its product’s **Detail Page**
+-   **Responsive Grid Layout** – Products are displayed in an adaptive grid for all screen sizes
+
+### Detail Page
+
+-   **Product Details View** – Displays each item’s image, title, price, and description
+-   **Add to Cart Button** – Displays a confirmation message (`"Added to cart"`) when clicked
+-   **Navigation** – Includes a “Back to Products” link for easy user flow
+
+### Contact Page
+
+-   **Functional Contact Form** – Includes validation for:
+    -   Name
+    -   Email
+    -   Message
+    -   Country
+-   **JavaScript-based form validation** ensures proper input before submission
+
+### Global Components
+
+-   **Reusable Navbar and Footer** – Rendered components appearing on every page
+-   **Header Product Section Navigation** – Includes a dropdown that automatically navigates and scrolls to respective sections of the Products page
+-   **Functional Footer Form** – Includes a form that mimics text sign-ups and has validation for phone numbers
+-   **Social Media Links** – Footer includes clickable social icons for accessibility and branding
+-   **Fully Responsive Design** – Optimized across desktop, tablet, and mobile viewports
 
 ---
 
@@ -125,7 +157,7 @@ Through eCommerce-v2, I gained experience with:
 
 ## Future Improvements
 
--   Shopping cart and checkout functionality
+-   Implement full cart functionality (item storage, quantity updates, and checkout)
 -   Search bar for real-time product lookup
 -   User authentication and profiles
 
