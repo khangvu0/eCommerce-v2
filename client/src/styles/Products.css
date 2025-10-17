@@ -2,14 +2,9 @@
     padding: 0 1.5rem 2rem;
 }
 
-.categories-title {
+.section-title {
     margin: 0 1rem;
     font-size: 1.25rem;
-}
-
-#bottoms .categories-title,
-#shoes .categories-title,
-#accessories .categories-title {
     margin-top: 1.5rem;
 }
 
@@ -20,10 +15,6 @@
     column-gap: 0.5rem;
     border-bottom: 2px solid #e0e0e0;
     padding-bottom: 1rem;
-}
-
-#accessories-grid {
-    border-bottom: none;
 }
 
 .product-card {
@@ -68,7 +59,6 @@
 .filters {
     display: flex;
     gap: 1rem;
-    /* margin-bottom: 1.5rem; */
     justify-content: center;
 }
 
@@ -84,13 +74,21 @@ select {
 /*-------------------- Media Queries --------------------*/
 /* For tablet */
 @media screen and (min-width: 768px) {
-    .categories {
+    .product-section {
         padding: 0 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
     }
 }
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
+    /* #top {
+        margin-top: 1rem;
+    } */
+
     .product-grid {
         grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
     }
