@@ -87,6 +87,12 @@ export default function Header() {
                         </li>
 
                         <li className="nav_item">
+                            <Link to="/kevin" className="nav_link">
+                                Kevin
+                            </Link>
+                        </li>
+
+                        <li className="nav_item">
                             <Link to="/cart" className="nav_link">
                                 Cart
                             </Link>
