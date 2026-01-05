@@ -1,6 +1,7 @@
 # eCommerce-v2
 
-A full-stack, responsive, and dynamic eCommerce web application that offers users a seamless online shopping experience.  
+A full-stack, responsive, and dynamic eCommerce web application that offers users a seamless online shopping experience.
+
 This version builds upon the original static **[eCommerce](https://github.com/khangvu0/eCommerce)** by introducing a connected PostgreSQL database, React component architecture, filtering and navigation functionality, and a detailed product page for an enhanced shopping experience.
 
 ## Live Demo
